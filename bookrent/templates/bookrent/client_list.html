@@ -1,0 +1,27 @@
+{% extends "bookrent/base.html" %}
+
+{% block title %}Lista klientów{% endblock %}
+
+
+{% block content %}
+
+<h2>Klienci</h2>
+ <ul>
+{% for client in object_list %}
+            <li>{{ client }}</li>
+            <ul>
+            	{% for rental in client.rental_set.all %}
+            		{% if rental.returned == False %}
+            			<li>
+
+            				{{ rental.book }}
+            	    
+            			</li>
+
+            		{% endif %}
+            	{% endfor %}
+            </ul>
+{% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+
+
+{% extends "bookrent/base.html" %}
+
+{% block title %}Dodaj wypożyczenie{% endblock %}
+
+{% block content %}
+
+<form action="" method="post">
+{% csrf_token %}
+{{ form.as_p }}
+
+
+
+<input type="submit" value="Zatwierdz">
+
+</form>
+{% endblock %}

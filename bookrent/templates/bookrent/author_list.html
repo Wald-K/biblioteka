@@ -1,0 +1,22 @@
+{% extends "bookrent/base.html" %}
+
+{% block title %}Lista autorów{% endblock %}
+
+
+{% block content %}
+
+<h2>Autorzy</h2>
+ <ul>
+{% for author in object_list %}
+            <li>{{author.pk}} - {{ author}}</li>
+            <ul>
+            	{% for book in author.book_set.all %}
+            		<li>
+            			{{book.title}}
+            		</li>
+            	{% endfor%}
+            </ul>
+{% endfor %}
+</ul>
+
+{% endblock %}

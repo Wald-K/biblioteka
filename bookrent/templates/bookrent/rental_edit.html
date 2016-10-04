@@ -1,0 +1,13 @@
+{% extends "bookrent/base.html" %}
+
+{% block title %}Dodaj wypożyczenie{% endblock %}
+
+{% block content %}
+
+<h1>Wypożyczenie</h1>
+<form method="POST">
+{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit" class="save btn btn-default">Zapisz</button>
+</form>
+{% endblock %}
