@@ -1,4 +1,21 @@
-<h1>Działa</h1>
 
-<h2>Witaj {{imie}}</h2>
-<a href="{% url 'accounts:logout'%}">Wyloguj sie</a>
+
+
+
+
+{% extends "bookrent/base.html" %}
+
+{% block title %}Program Wypożyczalnia{% endblock %}
+
+{% block content %}
+<hr>
+<p>
+<a href="{% url 'bookrent:book-list'  %}">Książki</a>
+</p>
+<p>
+<a href="{% url 'bookrent:author-list' %}">Autorzy</a>
+</p>
+<p>
+<a href="{% url 'bookrent:client-list' %}">Klienci</a>
+</p>
+{% endblock %}

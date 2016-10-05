@@ -47,6 +47,6 @@ class Rental(models.Model):
 	rental_date = models.DateField(default=datetime.date.today)
 	returned = models.BooleanField(default=False)
 	def __unicode__(self):
-		return 'Rental: {0} | Klient: {1}'.format(self.pk,self.client.last_name)
+		return 'Rental: {0} | Klient: {1} | Ksiazka: {2}'.format(self.pk,self.client.last_name, self.book.title)
 
 	

@@ -7,7 +7,7 @@ from django.urls import reverse
 
 # Create your views here.
 def Login(request):
-	next = request.GET.get('next', reverse('bookrent:index'))     #'/bookrent/')  
+	next = request.GET.get('next', reverse('bookrent:home'))     #'/bookrent/')  
 	if request.method == 'POST':
 		username = request.POST['username']
 		password = request.POST['password']

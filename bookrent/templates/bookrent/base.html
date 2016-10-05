@@ -9,8 +9,12 @@
 </head>
 
 <body>
+
+<h3>Jesteś zalogowany jako: {{imie}}</h3>
+<a href="{% url 'accounts:logout'%}">Wyloguj sie</a>
     <div id="content">
         {% block content %}{% endblock %}
     </div>
+    <a href="{% url 'bookrent:home' %}">Strona startowa</a>
 </body>
 </html>

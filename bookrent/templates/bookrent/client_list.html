@@ -6,10 +6,23 @@
 {% block content %}
 
 <h2>Klienci</h2>
- <ul>
+<p>
+<a href="{% url 'bookrent:client-new' %}">Nowy klient</a>
+</p>
+ <table style="width:50%">
+      <tr>
+            <th>Nr</th>
+            <th>Nazwisko i imię</th>
+      </tr>
+
 {% for client in object_list %}
-            <li>{{ client }}</li>
-            <ul>
+      <tr>
+            <td>{{ client.id }}</td>
+            <td>
+                <a href="{% url 'bookrent:client-detail' client.id %}">{{client}}</a>
+            </td>
+      </tr>
+            <!---<ul>
             	{% for rental in client.rental_set.all %}
             		{% if rental.returned == False %}
             			<li>
@@ -21,7 +34,9 @@
             		{% endif %}
             	{% endfor %}
             </ul>
+            -->
 {% endfor %}
+</table>
 </ul>
 
 {% endblock %}

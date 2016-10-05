@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from models import Book, Author, Client, Rental
 from django.urls import reverse_lazy
 
@@ -80,6 +80,9 @@ class ClientUpdate(UpdateView):
 class ClientDelete(DeleteView):
 	model = Client
 	success_url = reverse_lazy('bookrent:client-list')
+
+class ClientDetail(DetailView):
+	model = Client
 
 '''
 class RentalCreate(CreateView):

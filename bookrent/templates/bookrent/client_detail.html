@@ -1,0 +1,31 @@
+{% extends "bookrent/base.html" %}
+
+{% block title %}Szczegóły klienta{% endblock %}
+
+
+{% block content %}
+	<h1>
+	{{object.id}} - {{object}}
+	</h1>
+
+	<table style="width:50%">
+		<tr>
+    		<th>Nr książki</th>
+	    	<th>Tytuł</th>
+	    	<th>Zwrot</th>
+  		</tr>
+
+  		{% for rental in object.rental_set.all %}
+  			{% if rental.returned == False %}
+				<tr>
+	    			<td>{{ rental.book.id }}</td>
+	    			<td>{{ rental.book.title }}</td> 
+	    			<td> Zwrot </td>
+	    		
+	 			</tr>
+ 			{% endif %}
+		{% endfor %}
+
+
+  	</table>	
+{% endblock %}

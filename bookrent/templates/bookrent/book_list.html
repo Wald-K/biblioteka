@@ -4,14 +4,38 @@
 
 
 {% block content %}
-<h2>Witaj {{imie}}</h2>
-<a href="{% url 'accounts:logout'%}">Wyloguj sie</a>
+
 
 <h2>Książki</h2>
- <ul>
+<table style="width:50%">
+	<tr>
+    	<th>Nr</th>
+    	<th>Tytuł</th>
+    	<th>Autorzy</th> 
+    	<th>Operacje</th>
+  	</tr>
+
+ 
 {% for book in object_list %}
-            <li>{{ book.title }}</li>
+	<tr>
+    	<td>{{ book.id }}</td>
+    	<td>{{ book.title }}</td> 
+    	<td>
+    		{% for author in book.authors.all %}
+    			"{{author.last_name}} {{author.first_name}}"
+    		{% endfor %}
+    	</td>
+    	<td>
+    		<a href="{% url 'bookrent:book-edit' book.id %}">Edit</a> |  
+    		<a href="{% url 'bookrent:book-delete' book.id %}">Delete</a>
+    	</td>
+  </tr>
+
 {% endfor %}
-</ul>
+</table>
+<p>
+	<a href="{% url 'bookrent:book-new' %}">Dodaj książkę</a>
+</p>
 
 {% endblock %}
+

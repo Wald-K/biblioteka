@@ -5,7 +5,7 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),  # bookrent/
+    url(r'^$', views.index, name='home'),  # bookrent/
     url(r'books/$', views.BookListView.as_view(), name='book-list'),
     url(r'books/new/$', views.BookCreate.as_view(), name='book-new'),
     url(r'books/(?P<pk>\d+)/edit/$', views.BookUpdate.as_view(), name='book-edit'),
@@ -23,6 +23,8 @@ urlpatterns = [
     url(r'clients/new/$', views.ClientCreate.as_view(), name='client-new'),
     url(r'clients/(?P<pk>\d+)/edit/$', views.ClientUpdate.as_view(), name='client-edit'),
     url(r'clients/(?P<pk>\d+)/delete/$', views.ClientDelete.as_view(), name='client-delete'),
+    url(r'clients/(?P<pk>\d+)/$', views.ClientDetail.as_view(), name='client-detail'),
+
 
 
     #url(r'rentals/add/$', views.RentalCreate.as_view(), name='rental-add'),

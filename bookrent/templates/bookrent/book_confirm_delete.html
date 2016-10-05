@@ -1,4 +1,7 @@
 <form action="" method="post">{% csrf_token %}
     <p>Czy na pewno chcesz skasować książkę: "{{ object }}"?</p>
-    <input type="submit" value="Potwierdź" />
+    <button type="submit">"Potwierdź"</button>
+    <a href="{% url 'bookrent:book-list' %}">
+    	<button type="button">"Anuluj"</button>
+    </a>	
 </form>
