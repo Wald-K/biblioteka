@@ -7,12 +7,13 @@
 
 
 <h2>Książki</h2>
-<table style="width:50%">
+<table style="width:50%" class="table table-striped">
 	<tr>
     	<th>Nr</th>
     	<th>Tytuł</th>
     	<th>Autorzy</th> 
     	<th>Operacje</th>
+        <th>Wypożyczona przez</th>
   	</tr>
 
  
@@ -29,6 +30,13 @@
     		<a href="{% url 'bookrent:book-edit' book.id %}">Edit</a> |  
     		<a href="{% url 'bookrent:book-delete' book.id %}">Delete</a>
     	</td>
+        <td>
+            {% for rental in book.rental_set.all %}
+                {% if rental.returned == False %}
+                    {{rental.client}}
+                {% endif %}
+            {% endfor %}
+        </td>
   </tr>
 
 {% endfor %}

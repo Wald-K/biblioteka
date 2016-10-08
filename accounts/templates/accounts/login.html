@@ -6,8 +6,9 @@
 <form method="post" action= ".?next={{redirect_to}}">
 {% csrf_token %}
 
-
+<label>Użytkownik: </label>
 <input type="text" name="username"/>
+<label>Hasło: </label>
 <input type="password" name="password"/>
 
 <input type="submit" value="login" />

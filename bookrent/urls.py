@@ -28,9 +28,14 @@ urlpatterns = [
 
 
     #url(r'rentals/add/$', views.RentalCreate.as_view(), name='rental-add'),
-
+    # nowe wypozyczenie
     url(r'rentals/new/$', views.rental_new, name='rental-new'),
+    # nowe wypozyczenie z widoku klienta gdy znamy jego id
+    url(r'rentals/new/(?P<id_klienta>\d+)/$', views.rental_new_from_client_detail_template, name='rental-new_od_klienta'),
+    # edycja wypozyczenia
     url(r'rentals/(?P<pk>\d+)/edit/$', views.rental_edit, name='rental-edit'),
+    # zwrot z template klienta
+    url(r'rentals/(?P<pk>\d+)/(?P<id_klienta>\d+)/zwrot_klient/$', views.rental_zwrot_klient, name='rental-zwrot-klient'), 
 
 
 

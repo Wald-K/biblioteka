@@ -9,12 +9,13 @@
 </head>
 
 <body>
-
-<h3>Jesteś zalogowany jako: {{imie}}</h3>
-<a href="{% url 'accounts:logout'%}">Wyloguj sie</a>
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
-    <a href="{% url 'bookrent:home' %}">Strona startowa</a>
+	<div class="container">
+		<h3>Jesteś zalogowany jako: {{ user }}</h3> <!--- w zmiennej user jest aktualnie zalogowany User-->
+		<a href="{% url 'accounts:logout'%}">Wyloguj sie</a>
+		    <div id="content">
+		        {% block content %}{% endblock %}
+		    </div>
+		    <a href="{% url 'bookrent:home' %}">Strona startowa</a>
+	</div>
 </body>
 </html>

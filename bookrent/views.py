@@ -7,7 +7,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from models import Book, Author, Client, Rental
 from django.urls import reverse_lazy
 
-from . forms import RentalForm
+from . forms import RentalForm, RentalForm_without_Client
 from django.shortcuts import redirect, get_object_or_404
 
 
@@ -25,6 +25,7 @@ class BookListView(ListView):
 		# context z generic view
 		context = super(BookListView, self).get_context_data(**kwargs)
 		# dodajemy swoj context  !!! jak dodac swoj wlasny contekst do generica
+		# tutaj to jest bez sensu poniewaz zamiast imie wykorzystuje w base.html zmienna "user"
 		context['imie'] = self.request.user
 		return context
 	@method_decorator(login_required)
@@ -102,6 +103,22 @@ def rental_new(request):
 		form = RentalForm()
 	return render(request, 'bookrent/rental_edit.html', {'form': form})
 
+
+def rental_new_from_client_detail_template(request, id_klienta):
+	if request.method == "POST":
+		form = RentalForm_without_Client(request.POST)
+		if form.is_valid():
+			rental = form.save(commit=False)
+			rental.client = Client.objects.get(pk=id_klienta)
+			rental.save()
+			return redirect('bookrent:client-detail', id_klienta)
+	else:
+		form = RentalForm_without_Client()
+	return render(request, 'bookrent/rental_edit.html', {'form': form})
+
+
+
+
 def rental_edit(request, pk):
 	rental = get_object_or_404(Rental, pk=pk)
 	if request.method == 'POST':
@@ -113,3 +130,9 @@ def rental_edit(request, pk):
 	else:
 		form = RentalForm(instance = rental)
 	return render(request, 'bookrent/rental_edit.html', {'form': form})
+
+def rental_zwrot_klient(request, pk, id_klienta):
+	rental = get_object_or_404(Rental, pk=pk)
+	rental.returned = True
+	rental.save()
+	return redirect('bookrent:client-detail', id_klienta)

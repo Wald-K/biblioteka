@@ -7,25 +7,28 @@
 	<h1>
 	{{object.id}} - {{object}}
 	</h1>
+		<table style="width:50%">
+			<tr>
+	    		<th>Nr książki</th>
+		    	<th>Tytuł</th>
+		    	<th>Zwrot</th>
+	  		</tr>
 
-	<table style="width:50%">
-		<tr>
-    		<th>Nr książki</th>
-	    	<th>Tytuł</th>
-	    	<th>Zwrot</th>
-  		</tr>
+	  		{% for rental in object.rental_set.all %}
+	  			{% if rental.returned == False %}
+					<tr>
+		    			<td>{{ rental.book.id }}</td>
+		    			<td>{{ rental.book.title }}</td> 
+		    			<td>
+		    				<a href="{% url 'bookrent:rental-zwrot-klient' rental.pk object.id %}">Zwrot</a>
+		    			</td>
+		    		
+		 			</tr>
+	 			{% endif %}
+			{% endfor %}
+	  	</table>	
 
-  		{% for rental in object.rental_set.all %}
-  			{% if rental.returned == False %}
-				<tr>
-	    			<td>{{ rental.book.id }}</td>
-	    			<td>{{ rental.book.title }}</td> 
-	    			<td> Zwrot </td>
-	    		
-	 			</tr>
- 			{% endif %}
-		{% endfor %}
-
-
-  	</table>	
+<!-- tu dopisujemy nowe wypozyczenie z widoku client_detail. object.id jest numerem klienta-->
+<a href=" {% url 'bookrent:rental-new_od_klienta' object.id %}">Wypożycz nową książkę</a>
+<p>
 {% endblock %}

@@ -26,4 +26,8 @@ class RentalForm(forms.ModelForm):
 			if (rental_this_book.returned == False):
 				raise ValidationError('Ksiazka juz wypozyczona.')
 
-
+# wykorzystywany do zapisywania nowego wypozyczenia z widoku klienta, gdy juz znamy jego id
+class RentalForm_without_Client(RentalForm):
+	class Meta:
+		model = Rental
+		fields = ('book', 'rental_date', 'returned')
