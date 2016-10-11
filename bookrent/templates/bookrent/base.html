@@ -10,12 +10,39 @@
 
 <body>
 	<div class="container">
-		<h3>Jesteś zalogowany jako: {{ user }}</h3> <!--- w zmiennej user jest aktualnie zalogowany User-->
-		<a href="{% url 'accounts:logout'%}">Wyloguj sie</a>
-		    <div id="content">
+		<div class="row">
+			<h3>Jesteś zalogowany jako: {{ user }}</h3> <!--- w zmiennej user jest aktualnie zalogowany User-->
+			<a href="{% url 'accounts:logout'%}">Wyloguj sie</a>
+		</div>
+		<div class="row">
+		<hr>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<p>
+				<a href="{% url 'bookrent:book-list'  %}">Książki</a>
+				</p>
+				<p>
+				<a href="{% url 'bookrent:author-list' %}">Autorzy</a>
+				</p>
+				<p>
+				<a href="{% url 'bookrent:client-list' %}">Klienci</a>
+				</p>
+				<a href="{% url 'bookrent:home' %}">Strona startowa</a>
+			</div>
+  			<div class="col-md-10">
 		        {% block content %}{% endblock %}
-		    </div>
-		    <a href="{% url 'bookrent:home' %}">Strona startowa</a>
+  			</div>
+		</div>
+
+
+
+
+
+
+		
+		    
+
 	</div>
 </body>
 </html>

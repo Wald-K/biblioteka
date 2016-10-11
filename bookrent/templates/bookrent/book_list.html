@@ -7,7 +7,11 @@
 
 
 <h2>Książki</h2>
-<table style="width:50%" class="table table-striped">
+<p>
+    <a href="{% url 'bookrent:book-new' %}">Dodaj książkę</a>
+</p>
+
+<table class="table table-striped">
 	<tr>
     	<th>Nr</th>
     	<th>Tytuł</th>
@@ -41,9 +45,7 @@
 
 {% endfor %}
 </table>
-<p>
-	<a href="{% url 'bookrent:book-new' %}">Dodaj książkę</a>
-</p>
+
 
 {% endblock %}
 

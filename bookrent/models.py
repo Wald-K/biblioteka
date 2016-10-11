@@ -40,6 +40,15 @@ class Client(models.Model):
 	class Meta:
 		ordering = ('last_name',)
 
+	def number_of_not_returned_book(self):
+		not_returned_book = 0
+		for rental in self.rental_set.all():
+			if rental.returned == False:
+				not_returned_book = not_returned_book +1
+		return not_returned_book
+
+
+
 
 class Rental(models.Model):
 	client = models.ForeignKey(Client)
