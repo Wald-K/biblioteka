@@ -20,15 +20,20 @@
 		<div class="row">
 			<div class="col-md-2">
 				<p>
-				<a href="{% url 'bookrent:book-list'  %}">Książki</a>
+					<a href="{% url 'bookrent:book-list'  %}">Książki</a>
 				</p>
 				<p>
-				<a href="{% url 'bookrent:author-list' %}">Autorzy</a>
+					<a href="{% url 'bookrent:author-list' %}">Autorzy</a>
 				</p>
 				<p>
-				<a href="{% url 'bookrent:client-list' %}">Klienci</a>
+					<a href="{% url 'bookrent:client-list' %}">Klienci</a>
 				</p>
-				<a href="{% url 'bookrent:home' %}">Strona startowa</a>
+				<p>
+					<a href="{% url 'bookrent:rental-archival-list' %}">Wypożycenia archiwalne</a>
+				</p>
+				<p>
+					<a href="{% url 'bookrent:home' %}">Strona startowa</a>
+				</p>
 			</div>
   			<div class="col-md-10">
 		        {% block content %}{% endblock %}

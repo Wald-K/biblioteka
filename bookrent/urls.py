@@ -36,6 +36,11 @@ urlpatterns = [
     url(r'rentals/(?P<pk>\d+)/edit/$', views.rental_edit, name='rental-edit'),
     # zwrot z template klienta
     url(r'rentals/(?P<pk>\d+)/(?P<id_klienta>\d+)/zwrot_klient/$', views.rental_zwrot_klient, name='rental-zwrot-klient'), 
+    # wszystkie wypozyczenia ktore juz zostaly zwrocone
+    url(r'rentals/archival$', views.RentalArchivalListView.as_view(), name='rental-archival-list'),
+    # wypozyczenia archiwalne danego klienta o numerze id_klienta
+    url(r'rentals/archival/(?P<id_klienta>\d+)/$', views.rental_archival_list_by_client, name='rental-archival-list-by-klient'),
+
 
 
 

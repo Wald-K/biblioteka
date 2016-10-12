@@ -11,24 +11,30 @@
       <a href="{% url 'bookrent:client-new' %}">Nowy klient</a>
 </p>
 
- <table style="width:50%" class="table table-striped">
+ <table  class="table table-striped">
       <tr>
             <th>Nr</th>
             <th>Nazwisko i imię</th>
             <th>Wypożyczone książki</th>
+            <th>Wypożyczenia archiwalne</th>
       </tr>
 
 {% for client in object_list %}
       <tr>
             <td>{{ client.id }}</td>
             <td>
-                <a href="{% url 'bookrent:client-detail' client.id %}">{{client}}  
-                </a>
+                {{client}}
             </td>
             <td>
+              <a href="{% url 'bookrent:client-detail' client.id %}">
                   <span class="badge">
-                {{ client.number_of_not_returned_book }}
-                </span>
+                    {{ client.number_of_not_returned_book }}
+                 </span>
+              </a>   
+            </td>
+            <td>
+              <a href="{% url 'bookrent:rental-archival-list-by-klient' client.id %}">Archiwum  
+                </a>
             </td>
       </tr>
 {% endfor %}

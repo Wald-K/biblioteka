@@ -136,3 +136,15 @@ def rental_zwrot_klient(request, pk, id_klienta):
 	rental.returned = True
 	rental.save()
 	return redirect('bookrent:client-detail', id_klienta)
+
+class RentalArchivalListView(ListView):
+	model = Rental
+	template_name = 'bookrent/rental_archival_list.html'
+	def get_queryset(self):
+		return Rental.objects.filter(returned = True).order_by('-rental_date')[:100]
+
+def rental_archival_list_by_client(request, id_klienta):
+	client = Client.objects.get(pk=id_klienta)
+	rentals_by_client = Rental.objects.filter(returned = True).filter(client_id=id_klienta).order_by('-rental_date')
+	return render(request, 'bookrent/rental_list_by_client.html',
+		{'rentals_by_client':rentals_by_client, 'client': client})

@@ -1,0 +1,32 @@
+{% extends "bookrent/base.html" %}
+
+{% block title %}Wypożyczenia archiwalne{% endblock %}
+
+
+{% block content %}
+
+    {% if rentals_by_client.count != 0 %}
+        <h2>Wypożyczenia archiwalne - {{ client }}</h2>
+
+        <table class="table table-striped">
+        	<tr>
+            	<th>Nr</th>
+            	<th>Data</th>
+            	<th>Tytuł książki</th>
+          	</tr>
+
+         
+        {% for rental in rentals_by_client %}
+        	<tr>
+            	<td>{{ rental.id }}</td>
+            	<td>{{ rental.rental_date }}</td> 
+                <td>{{ rental.book }}</td> 
+            </tr>
+
+        {% endfor %}
+        </table>
+    {% else %}    
+        <h2>Puste archiwum klienta - {{ client }}</h2>
+    {% endif %}
+
+{% endblock %}

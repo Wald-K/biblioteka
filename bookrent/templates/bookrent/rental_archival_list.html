@@ -1,0 +1,32 @@
+{% extends "bookrent/base.html" %}
+
+{% block title %}Wypożyczenia archiwalne{% endblock %}
+
+
+{% block content %}
+
+
+<h2>Wypożyczenia archiwalne</h2>
+
+<table class="table table-striped">
+	<tr>
+    	<th>Nr</th>
+    	<th>Data</th>
+    	<th>Tytuł książki</th>
+        <th>Wypożyczona przez</th>
+  	</tr>
+
+ 
+{% for rental in object_list %}
+	<tr>
+    	<td>{{ rental.id }}</td>
+    	<td>{{ rental.rental_date }}</td> 
+        <td>{{ rental.book }}</td> 
+        <td>{{ rental.client }}</td> 
+    </tr>
+
+{% endfor %}
+</table>
+
+
+{% endblock %}
